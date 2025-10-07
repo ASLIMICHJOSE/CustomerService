@@ -91,6 +91,7 @@
       }
       .content {
         padding: 20px;
+        margin-top: 0;
       }
       .section {
         display: none;
@@ -481,9 +482,7 @@
           padding: 10px;
           margin-bottom: 20px;
         }
-        .#defa {
-          margin-right: 20px;
-        }
+       
       }
       @media (max-width: 768px) {
         .container {
@@ -876,25 +875,27 @@
         cursor: pointer;
         color: #888;
       }
-      .content-box {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      font-size: medium;
-      border: px solid #000;
-      flex-direction: row;
-      flex-grow:initial;
-      
-    }
+      /* ...existing code... */
+.content-box {
+  display: flex;
+  width: 100%;
+  height: 500px; /* Increase this value as needed */
+  font-size: medium;
+  border: px solid #000;
+  flex-direction: row;
+  flex-grow: initial;
+  align-items: stretch; /* Ensure children stretch to full height */
+}
 
-    /* Left Panel */
-    .left-panel {
-      flex: 1;
-      border-right: 1.5px solid #000;
-      padding: 20px 25px;
-      display: flex;
-      flex-direction: column;
-    }
+    /* ...existing code... */
+.left-panel {
+  flex: 0 0 30%;
+  border-right: 3px solid #000; /* Make the line thicker if desired */
+  padding: 20px 25px;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensure it fills the parent height */
+}
 
     .left-panel h2 {
       font-size: 26px;
@@ -984,7 +985,7 @@
         max-width: 70%;
         padding: 10px 20px;
         margin: 5px 0;
-        border-radius: 25px;
+        
         font-size: 16px;
         background: #d9d9d9;
     }
@@ -1020,14 +1021,14 @@
     .input-container {
         display: flex;
         padding: 12px;
-        border-top: 1px solid #aaa;
-        background: #b3b3b3;
+        border-top: 1px solid #585454;
+        background: #d9d9d9;
     }
     input {
         flex: 1;
         padding: 12px 20px;
         border: none;
-        border-radius: 25px;
+    color: #000;
         outline: none;
         font-size: 16px;
     }
@@ -1035,7 +1036,7 @@
         margin-left: 10px;
         padding: 0 20px;
         border: none;
-        border-radius: 25px;
+      
         background: #333;
         color: #fff;
         font-size: 16px;
@@ -1070,6 +1071,18 @@
 .left-panel section.quick-help {
     border-bottom: none; /* Remove line after Quick Help */
   }
+
+
+
+
+/* ...existing code... */
+.chat-panel {
+  flex: 0 0 60%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  height: 100%; /* Ensure it fills the parent height */
+}
 
 
 
@@ -1226,61 +1239,64 @@
                 </div>
               </div>
             </div>
-            <div id="reviews" class="section">
-            <div class="content-box">
-      <!-- Left Side -->
-      <div class="left-panel">
-        <h2>Customer Service</h2>
-        <section>
-          <h3 id="cs">Contact us</h3>
-          <p>Gmail : zyraa@gmail.com</p>
-          <p>Number : 9465776876</p>
-        </section>
+  <div id="reviews" class="section">
+      <div class="content-box">
+        <!-- Left Side -->
+        <div class="left-panel">
+          <h2>Customer Service</h2>
+          <section>
+            <h3 id="cs">Contact us</h3>
+            <p>Gmail : zyraa@gmail.com</p>
+            <p>Number : 9465776876</p>
+          </section>
 
-        <section>
-          <h3 id="cr">Complaint Register</h3>
-          <div class="complaint-box">
-            <label>Register Here →</label>
-            
-            <button id="complaintBtn">Complaint</button>
-          </div>
-        </section>
-
-        <section class="quick-help">
-          <h3 id="qh">Quick Help</h3>
-          <a href="#">Refund & Return  ›</span></a>
-          <a href="#">Track My Order   ›</span></a>
-          <a href="#">Payment Issues   ›</span></a>
-        </section>
-      </div>
-
-      <!-- Right Chat -->
-      <div class="chat-panel">
-        <div class="chat-container" id="chat-container">
-    <div class="message bot">Good morning</div>
-    <div class="message bot">How can I help you</div>
-    <div class="typing" id="typing-indicator" style="display:none;">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-    </div>
-</div>
-<div class="input-container">
-    <input type="text" id="user-input" placeholder="type something here">
-    <button id="send-btn">Send</button>
-</div>
-  </div>
-            <div id="notifications" class="section">
-              <div class="title-bar">
-                <h3>All Notification</h3>
-              </div>
-              <div class="notification-container">
-                <div class="notify-card" id="Note1">Notification1</div>
-                <div class="notify-card" id="Note2">Notification2</div>
-                <div class="notify-card" id="Note3">Notification3</div>
-                <div class="notify-card" id="Note4">Notification4</div>
-              </div>
+          <section>
+            <h3 id="cr">Complaint Register</h3>
+            <div class="complaint-box">
+              <label>Register Here →</label>
+              <button id="complaintBtn">Complaint</button>
             </div>
+          </section>
+
+          <section class="quick-help">
+            <h3 id="qh">Quick Help</h3>
+            <a href="#">Refund & Return  ›</a>
+            <a href="#">Track My Order   ›</a>
+            <a href="#">Payment Issues   ›</a>
+          </section>
+        </div>
+
+        <!-- Right Chat -->
+        <div class="chat-panel">
+          <div class="chat-container" id="chat-container">
+            <div class="message bot">Good morning</div>
+            <div class="message bot">How can I help you</div>
+            <div class="typing" id="typing-indicator" style="display:none;">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+          </div>
+          <div class="input-container">
+            <input type="text" id="user-input" placeholder="type something here">
+            <button id="send-btn">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notifications (moved outside reviews) -->
+    <div id="notifications" class="section">
+      <div class="title-bar">
+        <h3>All Notification</h3>
+      </div>
+      <div class="notification-container">
+        <div class="notify-card" id="Note1">Notification1</div>
+        <div class="notify-card" id="Note2">Notification2</div>
+        <div class="notify-card" id="Note3">Notification3</div>
+        <div class="notify-card" id="Note4">Notification4</div>
+      </div>
+    </div>
             </div>
             </div>
             </section>
