@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZYRAA Account Settings</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sansation:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: #fff;
+        font-family: "Sansation", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+      }
+      .container {
+        max-width: 1300px;
+        margin: 0 auto;
+        overflow: hidden;
+        margin-top: 60px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        border-bottom: 1px solid #000;
+      }
+      .close {
+        font-size: 18px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+      h1 {
+        font-size: 24px;
+        margin: 0;
+      }
+      .main {
+        display: flex;
+        gap: 20px;
+      }
+      .sidebar-container {
+        flex: 0 0 280px;
+        border: 1px solid #000;
+        border-radius: 0px;
+        background: #fff;
+        min-height: 650px;
+      }
+      .sidebar {
+        padding: 20px;
+      }
+      .sidebar h2 {
+        font-size: 14px;
+        text-transform: uppercase;
+        margin: 20px 0 10px;
+      }
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .sidebar li {
+        padding: 20px 0;
+        cursor: pointer;
+        font-size: 14px;
+        margin-left: 30px;
+      }
+      .sidebar li.active {
+        font-weight: bold;
+      }
+      .sidebar hr {
+        border: 0;
+        border-top: 1px solid #000;
+        margin: 10px 0;
+      }
+      .logout {
+        padding: 8px 0;
+        cursor: pointer;
+        font-size: 14px;
+        margin-top: 25px;
+        margin-left: 93px;
+      }
+      .content-container {
+        flex: 1;
+        border: 1px solid #000;
+        border-radius: 0px;
+        background: #fff;
+        padding: 20px;
+        margin-left: 60px;
+      }
+      .content {
+        padding: 20px;
+      }
+      .section {
+        display: none;
+      }
+      .section.active {
+        display: block;
+      }
+      .title-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .title-bar h3 {
+        font-size: 16px;
+        margin: 0;
+      }
+      .title-bar button {
+        background: #fff;
+        border: 1px solid #000;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      .upi-list {
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+      }
+      .upi-item {
+        display: flex;
+        align-items: center;
+        border: 1px solid #000;
+        border-radius: 0px;
+        padding: 15px;
+        margin-bottom: 30px;
+        background: #fff;
+      }
+      .icon {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        margin-right: 20px;
+      }
+      .info {
+        flex: 1;
+      }
+      .info p {
+        margin: 0;
+        font-size: 14px;
+      }
+      .info p:first-child {
+        font-weight: bold;
+      }
+      .info p:last-child {
+        color: #666;
+        font-size: 12px;
+      }
+      .actions {
+        display: flex;
+        align-items: center;
+      }
+      .actions span:first-child {
+        color: #888;
+        font-size: 12px;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+      .actions span:last-child {
+        color: #888;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      #addbutton {
+        padding: 15px;
+      }
+      #user {
+        padding: 5px;
+      }
+      #nameid {
+        padding: 5px;
+      }
+      #defa {
+        margin-right: 45px;
+      }
+      #dot {
+        font-size: 30px;
+      }
+      .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 60px;
+        padding: 40px;
+      }
+      .card {
+        width: 290px;
+        height: 120px;
+        background: linear-gradient(to bottom, #d3d3d3, #a9a9a9);
+        border-radius: 0px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        flex: 0 0 calc(50% - 40px);
+        max-width: 220px;
+      }
+      .visa-card .card-brand {
+        font-size: 20px;
+        font-weight: bold;
+        color: #fff;
+      }
+      .card-details {
+        display: flex;
+        justify-content: space-between;
+        color: #fff;
+      }
+      .dots {
+        letter-spacing: 2px;
+      }
+      .expires {
+        font-size: 14px;
+      }
+      .last-four {
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .card-chip {
+        width: 30px;
+        height: 20px;
+        border-radius: 5px;
+        position: absolute;
+        top: 15px;
+        left: 15px;
+      }
+      .card-circles .circle {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 5px;
+      }
+      .card-circles .red {
+        background: #ff4040;
+      }
+      .card-circles .blue {
+        background: #00bfff;
+      }
+      .add-card {
+        width: 140px;
+        height: 40px;
+        background: #fff;
+        border: 1px solid #000;
+        border-radius: 0px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      .visa-card {
+        margin-right: 100px;
+        margin-bottom: 30px;
+        margin-left: 60px;
+      }
+      #addresses {
+        flex: 1;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      #addresses .title-bar {
+        margin-bottom: 55px;
+      }
+      #addresses .title-bar h3 {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0;
+      }
+      .addresses-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .add-address-box {
+        padding: 24px;
+        border: 1px solid #000;
+        background-color: #fff;
+        cursor: pointer;
+        font-size: 14px;
+        color: #666;
+        border-radius: 0px;
+        transition: background 0.2s ease;
+        margin-bottom: 25px;
+      }
+      .add-address-box:hover {
+        background-color: #eaeaea;
+      }
+      .address-card {
+        padding: 48px;
+        border: 1px solid #000;
+        border-radius: 0px;
+        background-color: #fff;
+        font-size: 15px;
+        font-weight: 500;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+      #address1 {
+        margin-bottom: 25px;
+      }
+      .notification-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .notify-card {
+        padding: 40px;
+        border: 1px solid #000;
+        border-radius: 0px;
+        background-color: #fff;
+        font-size: 15px;
+        font-weight: 500;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 15px;
+      }
+      #wishlist {
+        flex: 1;
+        padding: 0px;
+        box-sizing: border-box;
+      }
+      #wishlist .title-bar {
+        margin-bottom: 35px;
+      }
+      #wishlist .title-bar h3 {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0;
+      }
+      .wishlist-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 40px;
+      }
+      .wishlist-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        border: 1px solid #000;
+        border-radius: 0px;
+        background: #fff;
+        padding: 15px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .wishlist-thumb {
+        width: 80px;
+        height: 80px;
+        background: #ddd;
+        border-radius: 0px;
+        flex-shrink: 0;
+      }
+      .wishlist-info {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-left: 50px;
+      }
+      .wishlist-info .item-title {
+        font-weight: 600;
+        font-size: 15px;
+        margin: 0;
+      }
+      .wishlist-info .item-detail {
+        font-size: 13px;
+        color: #666;
+        margin: 0;
+      }
+      .wishlist-info .item-price {
+        font-weight: 600;
+        color: #222;
+        margin: 0;
+      }
+      @media (max-width: 768px) {
+        .wishlist-item {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .wishlist-thumb {
+          width: 100%;
+          height: 150px;
+        }
+      }
+      @media (max-width: 768px) {
+        #addresses {
+          padding: 15px;
+        }
+        .address-card,
+        .add-address-box {
+          font-size: 13px;
+          padding: 12px;
+        }
+      }
+      @media (max-width: 1024px) {
+        .sidebar-container {
+          flex: 0 0 200px;
+        }
+      }
+      @media (max-width: 768px) {
+        .main {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .sidebar-container {
+          width: 100%;
+        }
+        .content-container {
+          width: 100%;
+        }
+        .sidebar {
+          padding: 10px;
+        }
+        .content {
+          padding: 10px;
+        }
+        .sidebar h2 {
+          font-size: 12px;
+        }
+        .sidebar li,
+        .logout {
+          font-size: 12px;
+        }
+        .title-bar h3 {
+          font-size: 14px;
+        }
+        .title-bar button {
+          font-size: 12px;
+          padding: 4px 8px;
+        }
+        .icon {
+          width: 25px;
+          height: 25px;
+          font-size: 12px;
+        }
+        .info p {
+          font-size: 12px;
+        }
+        .info p:last-child {
+          font-size: 10px;
+        }
+        .actions span:first-child {
+          font-size: 10px;
+        }
+      }
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .container {
+          max-width: 100%;
+          padding: 0 20px;
+        }
+        .sidebar-container {
+          flex: 0 0 220px;
+        }
+        .content-container {
+          margin-left: 20px;
+          padding: 15px;
+        }
+        .card-container {
+          gap: 40px;
+          padding: 20px;
+        }
+        .card {
+          width: 250px;
+          max-width: none;
+          flex: 0 0 calc(50% - 20px);
+        }
+        .visa-card {
+          margin-left: 0;
+          margin-right: 0;
+        }
+        .wishlist-info {
+          margin-left: 20px;
+        }
+        .upi-item {
+          padding: 10px;
+          margin-bottom: 20px;
+        }
+        .#defa {
+          margin-right: 20px;
+        }
+      }
+      @media (max-width: 768px) {
+        .container {
+          margin-top: 30px;
+          padding: 0 10px;
+        }
+        .main {
+          flex-direction: column;
+          gap: 15px;
+        }
+        .sidebar-container {
+          flex: none;
+          width: 100%;
+          min-height: auto;
+        }
+        .content-container {
+          flex: none;
+          width: 100%;
+          margin-left: 0;
+          padding: 10px;
+        }
+        .sidebar {
+          padding: 15px;
+        }
+        .sidebar li {
+          margin-left: 15px;
+          padding: 15px 0;
+        }
+        .logout {
+          margin-left: 0;
+          text-align: center;
+        }
+        .content {
+          padding: 15px;
+        }
+        .title-bar {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+        .title-bar button {
+          width: 100%;
+        }
+        .upi-list {
+          margin-top: 20px;
+        }
+        .upi-item {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+          padding: 10px;
+          margin-bottom: 15px;
+        }
+        .icon {
+          margin-right: 0;
+          margin-bottom: 10px;
+        }
+        .actions {
+          width: 100%;
+          justify-content: space-between;
+        }
+        #defa {
+          margin-right: 0;
+        }
+        #dot {
+          font-size: 24px;
+        }
+        .card-container {
+          flex-direction: column;
+          gap: 20px;
+          padding: 20px 0;
+        }
+        .card {
+          width: 100%;
+          max-width: none;
+          flex: none;
+          height: auto;
+          padding: 20px;
+        }
+        .visa-card {
+          margin: 0;
+        }
+        #addresses .title-bar {
+          margin-bottom: 30px;
+        }
+        .add-address-box {
+          padding: 15px;
+          font-size: 13px;
+          margin-bottom: 15px;
+        }
+        .address-card {
+          padding: 20px;
+          font-size: 14px;
+        }
+        #address1 {
+          margin-bottom: 15px;
+        }
+        #wishlist .title-bar {
+          margin-bottom: 20px;
+        }
+        .wishlist-container {
+          padding: 20px 0;
+          gap: 10px;
+        }
+        .wishlist-item {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 10px;
+          padding: 10px;
+        }
+        .wishlist-thumb {
+          width: 100%;
+          height: 120px;
+        }
+        .wishlist-info {
+          margin-left: 0;
+          gap: 3px;
+        }
+        .wishlist-info .item-title {
+          font-size: 14px;
+        }
+        .wishlist-info .item-detail {
+          font-size: 12px;
+        }
+        .wishlist-info .item-price {
+          font-size: 14px;
+        }
+      }
+      @media (max-width: 480px) {
+        body {
+          font-size: 14px;
+        }
+        .container {
+          margin-top: 20px;
+          padding: 0 5px;
+        }
+        .sidebar h2 {
+          font-size: 11px;
+          margin: 15px 0 5px;
+        }
+        .sidebar li {
+          font-size: 11px;
+          padding: 10px 0;
+          margin-left: 10px;
+        }
+        .logout {
+          font-size: 11px;
+          margin-top: 15px;
+        }
+        .title-bar h3 {
+          font-size: 13px;
+        }
+        .title-bar button {
+          font-size: 11px;
+          padding: 3px 6px;
+        }
+        .icon {
+          width: 20px;
+          height: 20px;
+          font-size: 10px;
+        }
+        .info p {
+          font-size: 11px;
+        }
+        .info p:last-child {
+          font-size: 9px;
+        }
+        .actions span:first-child {
+          font-size: 9px;
+        }
+        .actions span:last-child {
+          font-size: 14px;
+        }
+        #addbutton {
+          padding: 10px;
+        }
+        .card {
+          padding: 15px;
+        }
+        .visa-card .card-brand {
+          font-size: 18px;
+        }
+        .expires, .last-four {
+          font-size: 12px;
+        }
+        .add-card {
+          width: 100%;
+          height: 35px;
+          font-size: 12px;
+        }
+        .add-address-box {
+          padding: 12px;
+          font-size: 12px;
+        }
+        .address-card {
+          padding: 15px;
+          font-size: 13px;
+        }
+        .wishlist-thumb {
+          height: 100px;
+        }
+        .wishlist-info .item-title {
+          font-size: 13px;
+        }
+        .wishlist-info .item-detail {
+          font-size: 11px;
+        }
+        .wishlist-info .item-price {
+          font-size: 13px;
+        }
+      }
+      .title-bar h3 {
+        margin: 0 0 20px;
+        font-size: 24px;
+        text-align: center;
+      }
+      .personal-info {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .m-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .m-group input[type="text"],
+      .m-group input[type="email"],
+      .m-group input[type="tel"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 0px;
+        font-size: 16px;
+        flex: 1;
+      }
+      .m-group label {
+        font-size: 16px;
+        margin-bottom: 24px;
+        margin-top: 24px;
+      }
+      .m-group input[type="radio"] {
+        margin-right: 3px;
+      }
+      .edit-btn, .save-btn {
+        padding: 10px 20px;
+        background-color: #000;
+        color: #fff;
+        border: none;
+        border-radius: 0px;
+        cursor: pointer;
+        font-size: 16px;
+        flex: 0 0 auto;
+        margin-left: 200px;
+        width: 300px;
+      }
+      #fname {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      #gender {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      #male, #female {
+        display: flex;
+        align-items: center;
+        color: #000;
+      }
+      .email-group, .mobile-group {
+        display: flex;
+        gap: 50px;
+        flex-wrap: wrap;
+      }
+      @media (max-width: 768px) {
+        #fname {
+          flex-direction: column;
+          gap: 10px;
+        }
+        #gender {
+          flex-direction: row;
+          gap: 15px;
+        }
+        .email-group, .mobile-group {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .edit-btn, .save-btn {
+          width: 100%;
+        }
+      }
+      @media (max-width: 480px) {
+        #fname {
+          gap: 8px;
+        }
+        #gender {
+          gap: 10px;
+        }
+        .email-group, .mobile-group {
+          gap: 8px;
+        }
+        .m-group input[type="text"],
+        .m-group input[type="email"],
+        .m-group input[type="tel"] {
+          font-size: 14px;
+        }
+        .m-group label {
+          font-size: 14px;
+          margin-bottom: 16px;
+          margin-top: 16px;
+        }
+        .edit-btn, .save-btn {
+          font-size: 14px;
+          padding: 8px 16px;
+        }
+      }
+      .email-group {
+        display: inline;
+      }
+      .mobile-group {
+        display: inline;
+      }
+      .email-group input[type="email"], .mobile-group input[type="tel"] {
+        padding: 10px 20px;
+        border: 1px solid #000;
+        border-radius: 0px;
+        font-size: 16px;
+        flex: 1;
+        width: 300px;
+      }
+      .m-groups {
+        display: inline;
+      }
+      .m-groups input[type="text"] {
+        padding: 10px 20px;
+        border: 1px solid #000;
+        border-radius: 0px;
+        font-size: 16px;
+        flex: 1;
+        width: 100px;
+      }
+      .address-form {
+        display: none;
+        flex-direction: row;
+        gap: 15px;
+        padding: 20px;
+        border: 1px solid #000;
+        background: #fff;
+        margin-bottom: 25px;
+        align-items: center;
+      }
+      .address-form input, .address-form textarea {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 0;
+        font-size: 14px;
+        flex: 1;
+        width: 200px;
+      }
+      .address-form button {
+        padding: 10px;
+        background: #000;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        margin-left: 10px;
+      }
+      .address-card {
+        padding: 48px;
+        border: 1px solid #000;
+        border-radius: 0px;
+        background-color: #fff;
+        font-size: 15px;
+        font-weight: 500;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+      .address-actions {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: flex;
+        gap: 10px;
+      }
+      .address-actions span {
+        cursor: pointer;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="main">
+        <div class="sidebar-container">
+          <nav class="sidebar">
+            <h2>ACCOUNT SETTINGS</h2>
+            <ul>
+              <li data-section="personal">Personal Information</li>
+              <li data-section="addresses">Manage Addresses</li>
+            </ul>
+            <hr />
+            <h2>PAYMENTS</h2>
+            <ul>
+              <li data-section="upi" class="active">Saved UPI</li>
+              <li data-section="cards">Saved Cards</li>
+            </ul>
+            <hr />
+            <h2>MY STUFF</h2>
+            <ul>
+              <li data-section="reviews">Customer Service</li>
+              <li data-section="notifications">All Notification</li>
+              <li data-section="wishlist">My Wishlist</li>
+            </ul>
+            <hr />
+            <div class="logout">Logout</div>
+          </nav>
+        </div>
+        <div class="content-container">
+          <section class="content">
+            <div id="personal" class="section">
+              <div class="title-bar">
+                <h3>Personal Information</h3>
+              </div>
+              <div class="personal-info">
+                <div class="m-groups" id="fname">
+                  <input type="text" id="firstName" placeholder="First Name">
+                  <input type="text" id="lastName" placeholder="Last Name">
+                </div>
+                <div class="m-group">
+                  <h4><label>Your Gender</label></h4>
+                  <div id="gender">
+                    <label id="male"><input type="radio" name="gender" value="male"> Male</label>
+                    <label id="female"><input type="radio" name="gender" value="female"> Female</label>
+                  </div>
+                </div>
+                <h4>Email Address</h4>
+                <div class="email-group">
+                  <input type="email" id="email" placeholder="Email Address">
+                  <button class="edit-btn">Edit Information</button>
+                </div>
+                <h4>Mobile Number</h4>
+                <div class="mobile-group">
+                  <input type="tel" id="mobile" placeholder="Mobile Number">
+                  <button class="save-btn">Save</button>
+                </div>
+              </div>
+            </div>
+            <div id="addresses" class="section">
+              <div class="title-bar">
+                <h3>Manage Addresses</h3>
+              </div>
+              <div class="addresses-container">
+                <div class="add-address-box">+ Add a New Address</div>
+                <div id="address-list">
+                  <!-- Existing addresses will be loaded here -->
+                </div>
+              </div>
+            </div>
+            <div id="upi" class="section active">
+              <div class="title-bar">
+                <h3>Saved UPI</h3>
+                <button id="addbutton">+Add New UPI</button>
+              </div>
+              <div class="upi-list">
+                <div class="upi-item">
+                  <div class="icon">A</div>
+                  <div class="info">
+                    <p id="user">Arunhari12@gmail.com</p>
+                    <p id="nameid">Verified Name: Arun</p>
+                  </div>
+                  <div class="actions">
+                    <span id="defa">Set as Default</span>
+                    <span id="dot">•••</span>
+                  </div>
+                </div>
+                <div class="upi-item">
+                  <div class="icon">B</div>
+                  <div class="info">
+                    <p id="user">Benadict457@gmail.com</p>
+                    <p id="nameid">Verified Name: Benadict</p>
+                  </div>
+                  <div class="actions">
+                    <span id="defa">Set as Default</span>
+                    <span id="dot">•••</span>
+                  </div>
+                </div>
+                <div class="upi-item">
+                  <div class="icon">E</div>
+                  <div class="info">
+                    <p id="user">Easwaransiva56@gmail.com</p>
+                    <p id="nameid">Verified Name: Easwaran</p>
+                  </div>
+                  <div class="actions">
+                    <span id="defa">Set as Default</span>
+                    <span id="dot">•••</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="cards" class="section">
+              <div class="title-bar">
+                <h3>Saved Cards</h3>
+                <button class="add-card">+Add New Card</button>
+              </div>
+              <div class="card-container">
+                <div class="card visa-card">
+                  <div class="card-brand">VISA</div>
+                  <div class="card-details">
+                    <span class="dots">•••• •••• ••••</span>
+                    <span class="expires">Expires 08/45</span>
+                  </div>
+                </div>
+                <div class="card custom-card">
+                  <div class="card-circles">
+                    <span class="circle red"></span>
+                    <span class="circle blue"></span>
+                  </div>
+                  <div class="card-details">
+                    <span class="dots">•••• •••• ••••</span>
+                    <span class="last-four">5678</span>
+                  </div>
+                </div>
+                <div class="card visa-card">
+                  <div class="card-brand">VISA</div>
+                  <div class="card-details">
+                    <span class="dots">•••• •••• ••••</span>
+                    <span class="expires">Expires 08/45</span>
+                  </div>
+                </div>
+                <div class="card custom-card">
+                  <div class="card-circles">
+                    <span class="circle red"></span>
+                    <span class="circle blue"></span>
+                  </div>
+                  <div class="card-details">
+                    <span class="dots">•••• •••• ••••</span>
+                    <span class="last-four">5678</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+  <div id="reviews" class="section">
+  <div class="title-bar">
+    <h3>Customer Service</h3>
+  </div>
+
+  <div class="customer-service">
+    <h4>Contact Us</h4>
+    <p>Email: <a href="mailto:zyraa@gmail.com">zyraa@gmail.com</a></p>
+    <p>Phone: <a href="tel:9465776876">9465776876</a></p>
+    <hr>
+
+    <h4>Complaint Register</h4>
+    <form id="complaintForm">
+      <label for="complaintText">Register Here:</label>
+      <input type="text" id="complaintText" placeholder="Enter your complaint" required>
+      <button type="submit">Submit</button>
+    </form>
+    <hr>
+
+    <h4>Quick Help</h4>
+    <ul class="quick-help">
+      <li><a href="#">Refund & Return</a></li>
+      <li><a href="#">Track My Order</a></li>
+      <li><a href="#">Payment Issues</a></li>
+    </ul>
+  </div>
+</div>
+ </div>
+
+            <div id="notifications" class="section">
+              <div class="title-bar">
+                <h3>All Notification</h3>
+              </div>
+              <div class="notification-container">
+                <div class="notify-card" id="Note1">Notification1</div>
+                <div class="notify-card" id="Note2">Notification2</div>
+                <div class="notify-card" id="Note3">Notification3</div>
+                <div class="notify-card" id="Note4">Notification4</div>
+              </div>
+            </div>
+            <div id="wishlist" class="section">
+              <div class="title-bar">
+                <h3>My Wishlist</h3>
+              </div>
+              <div class="wishlist-container">
+                <div class="wishlist-item">
+                  <div class="wishlist-thumb"></div>
+                  <div class="wishlist-info">
+                    <p class="item-title">Product Title</p>
+                    <p class="item-detail">Short product detail goes here...</p>
+                    <p class="item-price">₹ 2,999</p>
+                  </div>
+                </div>
+                <div class="wishlist-item">
+                  <div class="wishlist-thumb"></div>
+                  <div class="wishlist-info">
+                    <p class="item-title">Another Product</p>
+                    <p class="item-detail">Some description here...</p>
+                    <p class="item-price">₹ 1,499</p>
+                  </div>
+                </div>
+                <div class="wishlist-item">
+                  <div class="wishlist-thumb"></div>
+                  <div class="wishlist-info">
+                    <p class="item-title">Cool Item</p>
+                    <p class="item-detail">Details about this product...</p>
+                    <p class="item-price">₹ 799</p>
+                  </div>
+                </div>
+                <div class="wishlist-item">
+                  <div class="wishlist-thumb"></div>
+                  <div class="wishlist-info">
+                    <p class="item-title">Sample Product</p>
+                    <p class="item-detail">Quick info line...</p>
+                    <p class="item-price">₹ 3,499</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <script>
+      const menuItems = document.querySelectorAll(".sidebar li");
+      const sections = document.querySelectorAll(".section");
+      menuItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          const sectionId = item.dataset.section;
+          menuItems.forEach((i) => i.classList.remove("active"));
+          item.classList.add("active");
+          sections.forEach((s) => s.classList.remove("active"));
+          document.getElementById(sectionId).classList.add("active");
+        });
+      });
+      document.querySelector(".logout").addEventListener("click", () => {
+        alert("Logging out...");
+        window.location.href = "signup.html";
+      });
+
+      function loadPersonalInfo() {
+        const userData = JSON.parse(localStorage.getItem('userData')) || {};
+        document.getElementById('firstName').value = userData.firstName || '';
+        document.getElementById('lastName').value = userData.lastName || '';
+        document.getElementById('email').value = userData.email || '';
+        document.getElementById('mobile').value = userData.mobile || '';
+        if (userData.gender) {
+          document.querySelector(`input[name="gender"][value="${userData.gender}"]`).checked = true;
+        }
+      }
+      loadPersonalInfo();
+
+      const editBtn = document.querySelector('.edit-btn');
+      const saveBtn = document.querySelector('.save-btn');
+
+      editBtn.addEventListener('click', () => {
+        alert('Edit mode activated. Make changes and save.');
+      });
+
+      saveBtn.addEventListener('click', () => {
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const gender = document.querySelector('input[name="gender"]:checked')?.value || '';
+        const email = document.getElementById('email').value;
+        const mobile = document.getElementById('mobile').value;
+        const userData = { firstName, lastName, gender, email, mobile };
+        localStorage.setItem('userData', JSON.stringify(userData));
+        alert('Personal information saved!');
+      });
+
+      const maxAddresses = 3;
+      let addresses = JSON.parse(localStorage.getItem('addresses')) || [];
+
+      function initializeAddresses() {
+        const userData = JSON.parse(localStorage.getItem('userData')) || {};
+        if (userData.homeAddress && !addresses.some(addr => addr.type === 'Home' && addr.address === userData.homeAddress)) {
+          addresses.push({ type: 'Home', address: userData.homeAddress });
+          saveAddresses();
+        }
+        renderAddresses();
+      }
+
+      function saveAddresses() {
+        localStorage.setItem('addresses', JSON.stringify(addresses));
+      }
+
+      function renderAddresses() {
+        const addressList = document.getElementById('address-list');
+        addressList.innerHTML = '';
+        addresses.forEach((addr, index) => {
+          const card = document.createElement('div');
+          card.className = 'address-card';
+          card.innerHTML = `
+            <div>${addr.type}: ${addr.address}</div>
+            <div class="address-actions">
+              <span onclick="editAddress(${index})">Edit</span>
+              <span onclick="deleteAddress(${index})">Delete</span>
+            </div>
+          `;
+          addressList.appendChild(card);
+        });
+      }
+
+      const addAddressBox = document.querySelector('.add-address-box');
+      let addressForm = null;
+
+      addAddressBox.addEventListener('click', () => {
+        if (addresses.length >= maxAddresses) {
+          alert('Maximum of 3 addresses allowed.');
+          return;
+        }
+        if (!addressForm) {
+          addressForm = document.createElement('div');
+          addressForm.className = 'address-form';
+          addressForm.innerHTML = `
+            <input type="text" id="addressType" placeholder="Address Type (e.g., Home)">
+            <textarea id="addressText" placeholder="Full Address"></textarea>
+            <button onclick="saveNewAddress()">Save Address</button>
+            <button onclick="cancelAddAddress()">Cancel</button>
+          `;
+          const container = document.querySelector('.addresses-container');
+          container.insertBefore(addressForm, addAddressBox.nextSibling);
+        }
+        addressForm.style.display = 'flex';
+      });
+
+      window.saveNewAddress = function() {
+        const type = document.getElementById('addressType').value.trim();
+        const address = document.getElementById('addressText').value.trim();
+        if (type && address) {
+          addresses.push({ type, address });
+          saveAddresses();
+          renderAddresses();
+          addressForm.style.display = 'none';
+          addressForm.remove();
+          addressForm = null;
+        } else {
+          alert('Please fill in all fields.');
+        }
+      };
+
+      window.cancelAddAddress = function() {
+        addressForm.style.display = 'none';
+        addressForm.remove();
+        addressForm = null;
+      };
+
+      window.editAddress = function(index) {
+        const newType = prompt('Edit Type:', addresses[index].type);
+        const newAddr = prompt('Edit Address:', addresses[index].address);
+        if (newType && newAddr) {
+          addresses[index] = { type: newType, address: newAddr };
+          saveAddresses();
+          renderAddresses();
+        }
+      };
+
+      window.deleteAddress = function(index) {
+        if (confirm('Delete this address?')) {
+          addresses.splice(index, 1);
+          saveAddresses();
+          renderAddresses();
+        }
+      };
+
+      initializeAddresses();
+
+
+document.getElementById('complaintForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const complaint = document.getElementById('complaintText').value.trim();
+      if (complaint) {
+        alert('Your complaint has been submitted. We’ll get back to you soon.');
+        document.getElementById('complaintText').value = '';
+      }
+    });
+
+
+
+
+    </script>
+  </body>
+</html>
