@@ -876,6 +876,174 @@
         cursor: pointer;
         color: #888;
       }
+.content-box {
+  display: flex;
+  /* Optional: allow panels to wrap on very small screens */
+  flex-wrap: wrap;
+}
+
+    /* Left Panel */
+    .left-panel {
+  flex: 1 1 40%;   /* takes ~40% width but can shrink/grow */
+  padding-right: 16px;
+  box-sizing: border-box;
+}
+
+    .left-panel h2 {
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 25px;
+      letter-spacing: 0.5px;
+    }
+
+    .left-panel section {
+      margin-bottom: 25px;
+      border-bottom: 1px solid #000;
+      padding-bottom: 15px;
+    }
+
+    .left-panel h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .left-panel p {
+      font-size: 13.5px;
+      margin: 5px 0;
+    }
+
+    .complaint-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .complaint-box label {
+      font-size: 13.5px;
+      font-weight: 500;
+    }
+
+    .complaint-box input {
+      border: 1px solid #000;
+      padding: 6px 8px;
+      outline: none;
+      width: 160px;
+      font-size: 13px;
+    }
+
+    .complaint-box button {
+      padding: 6px 10px;
+      font-size: 13px;
+      background: transparent;
+      border: 1px solid #000;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .complaint-box button:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    .quick-help a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #000;
+      text-decoration: none;
+      font-size: 13.5px;
+      margin: 6px 0;
+    }
+
+    /* Chat Section */
+    .chat-panel {
+  flex: 1 1 60%;   /* takes ~60% width but can shrink/grow */
+  padding-left: 16px;
+  box-sizing: border-box;
+}
+
+    .chat-box {
+  max-height: 400px;  /* or whatever limit */
+  overflow-y: auto;
+}
+
+    .chat-msg {
+      background: #e1e1e1;
+      height: 28px;
+      width: 65%;
+      border-radius: 5px;
+    }
+
+    .chat-input {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+}
+
+
+    .chat-input img {
+      width: 22px;
+      height: 22px;
+      margin-right: 10px;
+      opacity: 0.7;
+      cursor: pointer;
+    }
+
+    .chat-input input {
+  flex: 1;
+  padding: 8px;
+  margin: 0 8px;
+  box-sizing: border-box;
+}
+
+    .chat-input .arrow {
+      transform: rotate(180deg);
+      font-size: 22px;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+
+
+/* 1. Make the section container a flex container that stretches full height */
+#reviews .section {
+  height: 100vh;           /* full viewport height */
+  display: flex;
+  align-items: stretch;
+}
+
+/* 2. Ensure content-box also stretches and lays out children side by side */
+.content-box {
+  flex: 1;                 /* take all available space in #reviews .section */
+  display: flex;
+  align-items: stretch;
+}
+
+/* 3. Panels share full height and layout their children vertically */
+.left-panel,
+.chat-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 4. Let the chat messages area (chat-box) expand, and keep input area at bottom */
+.chat-box {
+  flex: 1;
+  overflow-y: auto;       /* if too many messages, scroll */
+}
+
+/* 5. Chat input stays at bottom naturally (flex layout) */
+.chat-input {
+  /* no special height needed if it contains few elements */
+  /* you may also set a fixed height if desired */
+}
+
+
+
+
     </style>
   </head>
   <body>
@@ -1029,35 +1197,50 @@
                 </div>
               </div>
             </div>
-  <div id="reviews" class="section">
-  <div class="title-bar">
-    <h3>Customer Service</h3>
+            <div id="reviews" class="section">
+            <div class="content-box">
+      <!-- Left Side -->
+      <div class="left-panel">
+        <h2>Customer Service</h2>
+        <section>
+          <h3>Contact us</h3>
+          <p>Gmail : zyraagmail.com</p>
+          <p>Number : 9465776876</p>
+        </section>
+
+        <section>
+          <h3>Complaint Register</h3>
+          <div class="complaint-box">
+            <label>Register Here →</label>
+            <input type="text" id="complaint" placeholder="">
+            <button id="complaintBtn">Complaint</button>
+          </div>
+        </section>
+
+        <section class="quick-help">
+          <h3>Quick Help</h3>
+          <a href="#">Refund & Return ›</span></a>
+          <a href="#">Track My Order ›</span></a>
+          <a href="#">Payment Issues ›</span></a>
+        </section>
+      </div>
+
+      <!-- Right Chat -->
+      <div class="chat-panel">
+        <div class="chat-box">
+          <div class="chat-msg"></div>
+          <div class="chat-msg"></div>
+          <div class="chat-msg"></div>
+          <div class="chat-msg"></div>
+        </div>
+        <div class="chat-input">
+          <img src="https://cdn-icons-png.flaticon.com/512/3031/3031157.png" alt="upload">
+          <input type="text" placeholder="i am ai">
+          <span class="arrow"></span>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="customer-service">
-    <h4>Contact Us</h4>
-    <p>Email: <a href="mailto:zyraa@gmail.com">zyraa@gmail.com</a></p>
-    <p>Phone: <a href="tel:9465776876">9465776876</a></p>
-    <hr>
-
-    <h4>Complaint Register</h4>
-    <form id="complaintForm">
-      <label for="complaintText">Register Here:</label>
-      <input type="text" id="complaintText" placeholder="Enter your complaint" required>
-      <button type="submit">Submit</button>
-    </form>
-    <hr>
-
-    <h4>Quick Help</h4>
-    <ul class="quick-help">
-      <li><a href="#">Refund & Return</a></li>
-      <li><a href="#">Track My Order</a></li>
-      <li><a href="#">Payment Issues</a></li>
-    </ul>
-  </div>
-</div>
- </div>
-
             <div id="notifications" class="section">
               <div class="title-bar">
                 <h3>All Notification</h3>
@@ -1136,7 +1319,7 @@
         document.getElementById('email').value = userData.email || '';
         document.getElementById('mobile').value = userData.mobile || '';
         if (userData.gender) {
-          document.querySelector(`input[name="gender"][value="${userData.gender}"]`).checked = true;
+          document.querySelector(input[name="gender"][value="${userData.gender}"]).checked = true;
         }
       }
       loadPersonalInfo();
@@ -1255,20 +1438,6 @@
       };
 
       initializeAddresses();
-
-
-document.getElementById('complaintForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const complaint = document.getElementById('complaintText').value.trim();
-      if (complaint) {
-        alert('Your complaint has been submitted. We’ll get back to you soon.');
-        document.getElementById('complaintText').value = '';
-      }
-    });
-
-
-
-
     </script>
   </body>
 </html>
