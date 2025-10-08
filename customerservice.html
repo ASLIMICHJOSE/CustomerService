@@ -321,74 +321,78 @@
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         margin-top: 15px;
       }
-      #wishlist {
-        flex: 1;
-        padding: 0px;
-        box-sizing: border-box;
-      }
-      #wishlist .title-bar {
-        margin-bottom: 35px;
-      }
-      #wishlist .title-bar h3 {
-        font-size: 18px;
-        font-weight: 600;
-        margin: 0;
-      }
-      .wishlist-container {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        padding: 40px;
-      }
+#wishlist {
+      width: 100%;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #wishlist .title-bar {
+      margin-bottom: 20px;
+    }
+    #wishlist .title-bar h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+    }
+    .wishlist-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 16px;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .wishlist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      border: 1px solid #000;
+      background: #fff;
+      padding: 12px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .wishlist-thumb {
+      width: 80px;
+      height: 80px;
+      background: #ddd;
+      flex: 0 0 80px;
+    }
+    .wishlist-info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-left: 12px;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .wishlist-info .item-title {
+      font-weight: 600;
+      font-size: 15px;
+      margin: 0;
+    }
+    .wishlist-info .item-detail {
+      font-size: 13px;
+      color: #666;
+      margin: 0;
+    }
+    .wishlist-info .item-price {
+      font-weight: 600;
+      color: #222;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
       .wishlist-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 15px;
-        border: 1px solid #000;
-        border-radius: 0px;
-        background: #fff;
-        padding: 15px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
       }
       .wishlist-thumb {
-        width: 80px;
-        height: 80px;
-        background: #ddd;
-        border-radius: 0px;
-        flex-shrink: 0;
+        width: 100%;
+        height: 150px;
       }
-      .wishlist-info {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        margin-left: 50px;
-      }
-      .wishlist-info .item-title {
-        font-weight: 600;
-        font-size: 15px;
-        margin: 0;
-      }
-      .wishlist-info .item-detail {
-        font-size: 13px;
-        color: #666;
-        margin: 0;
-      }
-      .wishlist-info .item-price {
-        font-weight: 600;
-        color: #222;
-        margin: 0;
-      }
-      @media (max-width: 768px) {
-        .wishlist-item {
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-        }
-        .wishlist-thumb {
-          width: 100%;
-          height: 150px;
-        }
-      }
+    }
       @media (max-width: 768px) {
         #addresses {
           padding: 15px;
@@ -875,7 +879,6 @@
         cursor: pointer;
         color: #888;
       }
-      /* ...existing code... */
 .content-box {
   display: flex;
   width: 100%;
@@ -898,7 +901,7 @@
 }
 
     .left-panel h2 {
-      font-size: 26px;
+      font-size: 18px;
       font-weight: 600;
       text-align: center;
       margin-bottom: 25px;
@@ -910,8 +913,7 @@
       margin-bottom: 25px;
       border-bottom: 1px solid #000;
       padding-bottom: 15px;
-      margin-left: -50px;
-      
+      padding-left: 0px;
     }
 
     .left-panel h3 {
@@ -1072,7 +1074,82 @@
     border-bottom: none; /* Remove line after Quick Help */
   }
 
+*, *::before, *::after { box-sizing: border-box; }
 
+/* neutralize any negative left margin that pushes sections outside */
+.left-panel section {
+  margin-left: 0 !important;
+}
+
+/* compact, safe wishlist styles */
+#wishlist {
+        flex: 1;
+        padding: 0px;
+        box-sizing: border-box;
+      }
+      #wishlist .title-bar {
+        margin-bottom: 35px;
+      }
+      #wishlist .title-bar h3 {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0;
+      }
+      .wishlist-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 0px;
+      }
+      .wishlist-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        border: 1px solid #000;
+        border-radius: 0px;
+        background: #fff;
+        padding: 15px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .wishlist-thumb {
+        width: 80px;
+        height: 80px;
+        background: #ddd;
+        border-radius: 0px;
+        flex-shrink: 0;
+      }
+      .wishlist-info {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-left: 50px;
+      }
+      .wishlist-info .item-title {
+        font-weight: 600;
+        font-size: 15px;
+        margin: 0;
+      }
+      .wishlist-info .item-detail {
+        font-size: 13px;
+        color: #666;
+        margin: 0;
+      }
+      .wishlist-info .item-price {
+        font-weight: 600;
+        color: #222;
+        margin: 0;
+      }
+      @media (max-width: 768px) {
+        .wishlist-item {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .wishlist-thumb {
+          width: 100%;
+          height: 150px;
+        }
+      }
 
 
 /* ...existing code... */
@@ -1297,52 +1374,62 @@
         <div class="notify-card" id="Note4">Notification4</div>
       </div>
     </div>
-            </div>
-            </div>
-            </section>
-            <div id="wishlist" class="section">
-              <div class="title-bar">
-                <h3>My Wishlist</h3>
-              </div>
-              <div class="wishlist-container">
-                <div class="wishlist-item">
-                  <div class="wishlist-thumb"></div>
-                  <div class="wishlist-info">
-                    <p class="item-title">Product Title</p>
-                    <p class="item-detail">Short product detail goes here...</p>
-                    <p class="item-price">₹ 2,999</p>
-                  </div>
-                </div>
-                <div class="wishlist-item">
-                  <div class="wishlist-thumb"></div>
-                  <div class="wishlist-info">
-                    <p class="item-title">Another Product</p>
-                    <p class="item-detail">Some description here...</p>
-                    <p class="item-price">₹ 1,499</p>
-                  </div>
-                </div>
-                <div class="wishlist-item">
-                  <div class="wishlist-thumb"></div>
-                  <div class="wishlist-info">
-                    <p class="item-title">Cool Item</p>
-                    <p class="item-detail">Details about this product...</p>
-                    <p class="item-price">₹ 799</p>
-                  </div>
-                </div>
-                <div class="wishlist-item">
-                  <div class="wishlist-thumb"></div>
-                  <div class="wishlist-info">
-                    <p class="item-title">Sample Product</p>
-                    <p class="item-detail">Quick info line...</p>
-                    <p class="item-price">₹ 3,499</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
+
+    
+ 
+            <!-- Wishlist (ensure it is INSIDE the .content section) -->
+    <!-- ✅ Wishlist Section -->
+<div id="wishlist" class="section">
+  <div class="title-bar">
+    <h3>My Wishlist</h3>
+  </div>
+
+  <div class="wishlist-container">
+    <div class="wishlist-item">
+      <div class="wishlist-thumb" aria-hidden="true"></div>
+      <div class="wishlist-info">
+        <p class="item-title">Product Title</p>
+        <p class="item-detail">Short product detail goes here...</p>
+        <p class="item-price">₹ 2,999</p>
       </div>
     </div>
+
+    <div class="wishlist-item">
+      <div class="wishlist-thumb" aria-hidden="true"></div>
+      <div class="wishlist-info">
+        <p class="item-title">Another Product</p>
+        <p class="item-detail">Some description here...</p>
+        <p class="item-price">₹ 1,499</p>
+      </div>
+    </div>
+
+    <div class="wishlist-item">
+      <div class="wishlist-thumb"></div>
+      <div class="wishlist-info">
+        <p class="item-title">Cool Item</p>
+        <p class="item-detail">Details about this product...</p>
+        <p class="item-price">₹ 799</p>
+      </div>
+    </div>
+
+    <div class="wishlist-item">
+      <div class="wishlist-thumb"></div>
+      <div class="wishlist-info">
+        <p class="item-title">Sample Product</p>
+        <p class="item-detail">Quick info line...</p>
+        <p class="item-price">₹ 3,499</p>
+      </div>
+    </div>
+  </div> <!-- end wishlist-container -->
+</div> <!-- end wishlist -->
+</div>
+</section>
+</div>
+
+
+
+
+
     <script>
       const menuItems = document.querySelectorAll(".sidebar li");
       const sections = document.querySelectorAll(".section");
